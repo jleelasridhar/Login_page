@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - User Profile</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="dashboard-container">
+        <div class="dashboard-header">
+            <h1>User Dashboard</h1>
+            <a href="{{ url_for('logout') }}" class="logout-btn">Logout</a>
+        </div>
+
+        <div class="welcome-section">
+            <!-- INTENTIONAL XSS VULNERABILITY: Username rendered without escaping -->
+            <h2>Welcome <span id="username">{{ user.username }}</span></h2>
+            <p>Here are your account details</p>
+        </div>
+
+        <div class="user-details-card">
+            <div class="details-grid">
+                <div class="detail-item">
+                    <label>Full Name</label>
+                    <p>{{ user.full_name }}</p>
+                </div>
+
+                <div class="detail-item">
+                    <label>Age</label>
+                    <p>{{ user.age }}</p>
+                </div>
+
+                <div class="detail-item">
+                    <label>Date of Birth</label>
+                    <p>{{ user.dob }}</p>
+                </div>
+
+                <div class="detail-item">
+                    <label>Gender</label>
+                    <p>{{ user.gender }}</p>
+                </div>
+
+                <div class="detail-item">
+                    <label>Aadhar Number</label>
+                    <p>{{ user.aadhar }}</p>
+                </div>
+
+                <div class="detail-item">
+                    <label>Phone Number</label>
+                    <p>{{ user.phone }}</p>
+                </div>
+
+                <div class="detail-item">
+                    <label>Email ID</label>
+                    <p>{{ user.email }}</p>
+                </div>
+
+                <div class="detail-item">
+                    <label>Bank Account Number</label>
+                    <p>{{ user.bank_account }}</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="account-actions">
+            <button class="action-btn secondary">Edit Profile</button>
+            <button class="action-btn secondary">Change Password</button>
+            <a href="{{ url_for('logout') }}" class="action-btn secondary">Logout</a>
+        </div>
+    </div>
+</body>
+</html>
